@@ -1,8 +1,9 @@
-import {Outfit} from "next/font/google"
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Headers from "./_components/Headers";
+import Footer from "./_components/Footer";
 
-const outfit=Outfit({subsets:["latin"]});
+const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -12,13 +13,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={outfit.className}
-      >
+      <body className={outfit.className}>
         <div className="md:mx-20">
           <Headers />
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );

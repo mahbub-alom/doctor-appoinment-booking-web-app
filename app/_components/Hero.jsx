@@ -19,9 +19,7 @@ const Hero = () => {
               <h2 className="text-3xl font-bold sm:text-4xl">Find & Book <span className='text-primary'>Appointment</span> with your Fav <span className='text-primary'>Doctors</span></h2>
       
               <p className="mt-4 text-gray-600">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui hic atque tenetur quis
-                eius quos ea neque sunt, accusantium soluta minus veniam tempora deserunt? Molestiae eius
-                quidem quam repellat.
+              our dedicated team of expert doctors spans a wide range of medical fields. Our collaborative approach ensures that no matter the complexity of your condition, you have access to the expertise and care you deserve—all under one roof.
               </p>
       
             <Button className="mt-10">Explore Now</Button>
