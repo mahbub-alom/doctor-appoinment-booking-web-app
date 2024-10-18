@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const DoctorList = ({doctorList,heading="Popular Doctors"}) => {
 
@@ -28,9 +29,11 @@ const DoctorList = ({doctorList,heading="Popular Doctors"}) => {
                     {doctor?.Years_of_Experience}
                   </h2>
                   <h2 className="text-gray-500 text-sm">{doctor?.Address}</h2>
+                  <Link href={'/details/'+doctor?.id} className="w-full">
                   <h2 className="p-2 px-3 border-[1px] border-primary text-primary cursor-pointer rounded-full w-full text-center text-[11px] mt-2 hover:bg-primary hover:text-white">
                     Book Now
                   </h2>
+                  </Link>
                 </div>
               </div>
             ))

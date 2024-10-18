@@ -8,6 +8,11 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const Headers = () => {
   const Menu = [
@@ -50,9 +55,32 @@ const Headers = () => {
       </div>
 
       {user ? (
-        <Image src={user?.picture} alt="profile-picture" width={50} height={50} className="rounded-full"/>
-        // <LogoutLink><Button variant="outline">Log Out</Button></LogoutLink>
+        <Popover>
+          <PopoverTrigger>
+            <Image
+              src={user?.picture}
+              alt="profile-picture"
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+          </PopoverTrigger>
+          <PopoverContent className="w-44">
+            <ul className="flex flex-col gap-2">
+              <li className="cursor-pointer hover:bg-slate-100 p-2 rounded-md">
+                Profile
+              </li>
+              <li className="cursor-pointer hover:bg-slate-100 p-2 rounded-md">
+                My Booking
+              </li>
+              <li className="cursor-pointer hover:bg-slate-100 p-2 rounded-md">
+              <LogoutLink>Log Out</LogoutLink>
+              </li>
+            </ul>
+          </PopoverContent>
+        </Popover>
       ) : (
+        // <LogoutLink><Button variant="outline">Log Out</Button></LogoutLink>
         <LoginLink>
           <Button>Get Started</Button>
         </LoginLink>
