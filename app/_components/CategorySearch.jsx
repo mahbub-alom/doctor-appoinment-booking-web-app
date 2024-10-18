@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import GlobalApi from "../_utils/GlobalApi";
 import Image from "next/image";
+import Link from "next/link";
 
 const CategorySearch = () => {
   const [categoryList, setCategoryList] = useState([]);
@@ -36,30 +37,30 @@ const CategorySearch = () => {
       <div>
         {/* display list of category */}
         <div className="grid grid-cols-3 mt-5 md:grid-cols-4 lg:grid-cols-6 ">
-          {categoryList.length>0?categoryList.map(
-            (item, index) =>
-              index < 6 && (
-                <div
-                  key={index}
-                  className="flex flex-col text-center gap-2 items-center p-5 bg-blue-50 m-2 rounded-lg hover:scale-110 transition-all ease-in-out cursor-pointer"
-                >
-                  <Image
-                    src={item?.Icon?.url}
-                    width={40}
-                    height={40}
-                    alt="icon"
-                  />
-                  <label className="text-blue-600 text-sm">{item?.Name}</label>
-                </div>
+          {categoryList.length > 0
+            ? categoryList.map(
+                (item, index) =>
+                  index < 6 && (
+                    <Link
+                      href={"/search/" + item?.Name}
+                      key={index}
+                      className="flex flex-col text-center gap-2 items-center p-5 bg-blue-50 m-2 rounded-lg hover:scale-110 transition-all ease-in-out cursor-pointer"
+                    >
+                      <Image
+                        src={item?.Icon?.url}
+                        width={40}
+                        height={40}
+                        alt="icon"
+                      />
+                      <label className="text-blue-600 text-sm">
+                        {item?.Name}
+                      </label>
+                    </Link>
+                  )
               )
-          )
-        :
-        [1,2,3,4,5,6].map((item,index)=>(
-          <div className="bg-slate-200 m-2 w-[130px] h-[120px] rounded-lg animate-pulse">
-
-          </div>
-        ))
-        }
+            : [1, 2, 3, 4, 5, 6].map((item, index) => (
+                <div className="bg-slate-200 m-2 w-[130px] h-[120px] rounded-lg animate-pulse"></div>
+              ))}
         </div>
       </div>
     </div>
