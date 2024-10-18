@@ -1,26 +1,13 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import GlobalApi from "../_utils/GlobalApi";
 import Image from "next/image";
 
-const DoctorList = () => {
-  const [allDoctor, setAllDoctor] = useState([]);
-  console.log(allDoctor);
-
-  useEffect(() => {
-    getDoctorList();
-  }, []);
-
-  const getDoctorList = () => {
-    GlobalApi.getDoctor().then((resp) => setAllDoctor(resp.data.data));
-  };
+const DoctorList = ({doctorList,heading="Popular Doctors"}) => {
 
   return (
     <div className="mb-10 px-8">
-      <h2 className="font-bold text-xl text-center">Popular Doctor</h2>
+      <h2 className="font-bold text-xl text-center">{heading}</h2>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mt-4">
-        {allDoctor.length > 0
-          ? allDoctor.map((doctor, index) => (
+        {doctorList.length > 0
+          ? doctorList.map((doctor, index) => (
               <div
                 key={index}
                 className="border-[1px] rounded-lg p-3 cursor-pointer hover:border-primary hover:shadow-sm transition-all ease-in-out"
