@@ -2,10 +2,10 @@
 import GlobalApi from "@/app/_utils/GlobalApi";
 import React, { useEffect, useState } from "react";
 import DoctorDetails from "../_components/DoctorDetails";
+import DoctorSuggestionList from "../_components/DoctorSuggestionList";
 
 const Details = ({ params }) => {
   const [doctor, setDoctor] = useState();
-  console.log(doctor);
   useEffect(() => {
     getDoctorById();
   }, []);
@@ -23,7 +23,9 @@ const Details = ({ params }) => {
           {doctor && <DoctorDetails doctor={doctor} />}
         </div>
         {/* doctor suggestions */}
-        <div></div>
+        <div>
+          <DoctorSuggestionList/>
+        </div>
       </div>
     </div>
   );
