@@ -54,7 +54,7 @@ const DoctorDetails = ({ doctor }) => {
           <div className="flex gap-3">
             {socialMediaList.map((item, index) => (
               <Image
-              key={index}
+                key={index}
                 className="cursor-pointer"
                 src={item.icon}
                 width={30}
@@ -63,7 +63,7 @@ const DoctorDetails = ({ doctor }) => {
               />
             ))}
           </div>
-          <BookAppointment/>
+          <BookAppointment doctor={doctor} />
         </div>
       </div>
       {/* About Doctor */}

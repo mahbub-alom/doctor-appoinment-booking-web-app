@@ -12,7 +12,6 @@ function DoctorSuggestionList() {
     },[])
     const getDoctorList=()=>{
       GlobalApi.getDoctor().then(resp=>{
-        console.log(resp.data.data);
         setDoctorList(resp.data.data);
       })
     }

@@ -13,11 +13,16 @@ import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { CalendarDays, Clock } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import GlobalApi from "@/app/_utils/GlobalApi";
+import { toast } from "sonner";
 
-const BookAppointment = () => {
+const BookAppointment = ({ doctor }) => {
   const [date, setDate] = useState(new Date());
   const [timeSlot, setTimeSlot] = useState();
   const [selectedTimeSlot, setSelectedTimeSlot] = useState();
+  const [note, setNote] = useState();
+  const { user } = useKindeBrowserClient();
 
   useEffect(() => {
     getTime();
@@ -49,6 +54,27 @@ const BookAppointment = () => {
     return day <= new Date();
   };
 
+  const saveBooking = () => {
+    const data = {
+      data: {
+        UserName: user.given_name + " " + user.family_name,
+        Email: user.email,
+        Time: selectedTimeSlot,
+        Date: date,
+        doctor: doctor.id,
+        Note: note,
+      },
+    };
+    // console.log(data)
+    // console.log(doctor.id)
+    GlobalApi.bookAppointment(data).then((resp) => {
+      console.log(resp);
+      if (resp) {
+        toast("Booking Confirmation sent on Email");
+      }
+    });
+  };
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -75,7 +101,9 @@ const BookAppointment = () => {
                   />
                 </div>
                 {/* time slot */}
-                <div className="mt-3 md:mt-0">
+                <div
+                
+                className="mt-3 md:mt-0">
                   <h2 className="flex gap-2 items-center mb-3">
                     <Clock className="text-primary h-5 w-5" />
                     Select Time Slot
@@ -95,7 +123,11 @@ const BookAppointment = () => {
                   </div>
                 </div>
               </div>
-              <Textarea className="mt-3" placeholder="Note"/>
+              <Textarea
+                className="mt-3"
+                placeholder="Note"
+                onChange={(e) => setNote(e.target.value)}
+              />
             </div>
           </DialogDescription>
         </DialogHeader>
@@ -109,7 +141,11 @@ const BookAppointment = () => {
               >
                 Close
               </Button>
-              <Button type="button" disabled={!(date&&selectedTimeSlot)}>Submit</Button>
+              <Button type="button" disabled={!(date && selectedTimeSlot)} 
+              onClick={()=>saveBooking()}
+              >
+                Submit
+              </Button>
             </>
           </DialogClose>
         </DialogFooter>
