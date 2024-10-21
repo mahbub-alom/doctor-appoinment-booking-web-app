@@ -70,11 +70,14 @@ const Headers = () => {
               <li className="cursor-pointer hover:bg-slate-100 p-2 rounded-md">
                 Profile
               </li>
-              <li className="cursor-pointer hover:bg-slate-100 p-2 rounded-md">
+              <Link
+                href={"/my-booking"}
+                className="cursor-pointer hover:bg-slate-100 p-2 rounded-md"
+              >
                 My Booking
-              </li>
+              </Link>
               <li className="cursor-pointer hover:bg-slate-100 p-2 rounded-md">
-              <LogoutLink>Log Out</LogoutLink>
+                <LogoutLink>Log Out</LogoutLink>
               </li>
             </ul>
           </PopoverContent>
